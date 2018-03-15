@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+        <h1>The Psychic Gehme!</h1>
+        
+    <div id="game">
+        <p>Guess what letter im thinking of!</p>
+    </div>
+
+
+    <script type="text/javascript">
+
+      var computerChoices = ["1","2","3","4","5","6","7","8","9"];
+
+        var wins = 0
+        var losses = 0
+        var guessLeft = 10
+        var guessCount = 0
+
+        document.onkeyup = function(event){
+
+            var userGuess = event.key;
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+            if (userGuess === computerGuess){
+                wins++;
+                guessLeft = 10;
+                console.log('computer guess: ', computerGuess);
+                console.log('userGuess: ', userGuess);
+                console.log("this should be a win");
+                
+            } else{ 
+            
+                guessLeft--;
+                console.log('computer guess: ', computerGuess);
+                console.log('userGuess: ', userGuess);
+                console.log('take this L');
+
+                if(guessLeft === 0){
+                    guessLeft =10;
+                    losses++;
+                }
+            }
+            
+            var html =
+          "<p>You chose: " + userGuess + "</p>" +
+          "<p>The computer chose: " + computerGuess + "</p>" +
+          "<p>wins: " + wins + "</p>" +
+          "<p>losses: " + losses + "</p>" +
+          "<p>guessLeft:" + guessLeft + "</p>";
+
+        document.querySelector("#game").innerHTML = html;
+        };
+
+    </script>
+
+</body>
+</html>
